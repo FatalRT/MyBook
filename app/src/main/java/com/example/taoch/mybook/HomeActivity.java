@@ -41,12 +41,37 @@ public class HomeActivity extends AppCompatActivity {
                         switch (index)
                         {
                             case 0:
-                                Toast.makeText(HomeActivity.this,"登录",Toast.LENGTH_SHORT).show();break;
+                                Toast.makeText(HomeActivity.this,"登录",Toast.LENGTH_SHORT).show();
+                                new android.os.Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent mainIntent = new Intent(HomeActivity.this,LoginActivity.class);
+                                        HomeActivity.this.startActivity(mainIntent);
+                                    }
+                                },Waitdo);
+                                break;
                             case 1:
-                                Toast.makeText(HomeActivity.this,"账本",Toast.LENGTH_SHORT).show();break;
+                                Toast.makeText(HomeActivity.this,"账本",Toast.LENGTH_SHORT).show();
+                                new android.os.Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent mainIntent = new Intent(HomeActivity.this,BillActivity.class);
+                                        HomeActivity.this.startActivity(mainIntent);
+                                    }
+                                },Waitdo);
+                                break;
                             case 2:
-                                Toast.makeText(HomeActivity.this,"便签",Toast.LENGTH_SHORT).show();break;
+                                Toast.makeText(HomeActivity.this,"便签",Toast.LENGTH_SHORT).show();
+                                new android.os.Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent mainIntent = new Intent(HomeActivity.this,NoteActivity.class);
+                                        HomeActivity.this.startActivity(mainIntent);
+                                    }
+                                },Waitdo);
+                                break;
                             case 3:
+                                Toast.makeText(HomeActivity.this,"介绍",Toast.LENGTH_SHORT).show();
                                 new android.os.Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {

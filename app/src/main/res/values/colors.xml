@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorAbout">#646f8e</color>
     <color name="mbut">#FFFFFF</color>
+    <color name="logoScreenBackground">#cdd2d2</color>
 </resources>
