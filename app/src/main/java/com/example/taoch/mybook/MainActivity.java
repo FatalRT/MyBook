@@ -3,19 +3,33 @@ package com.example.taoch.mybook;
 * 启动页面
 */
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
+
+import org.litepal.LitePal;
 
 public class MainActivity extends AppCompatActivity {
 
-    private  final int SPLASH_DISPLAY_LENGHT = 4000;//两秒后进入系统，时间可自行调整
+    private  final int SPLASH_DISPLAY_LENGHT = 2000;//三秒后进入系统，时间可自行调整
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();//隐藏标题栏
+
+        Window window = getWindow();
+        //隐藏状态栏
+        //定义全屏参数
+        int flag=WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        //设置当前窗体为全屏显示
+        window.setFlags(flag, flag);
+
+//        getSupportActionBar().hide();//隐藏标题栏
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-  //在BZLaunchActivity停留2秒然后进入BZLaunchActivity
+        LitePal.getDatabase();
+        //在startActivity停留3秒然后进入HomeActivity
         new android.os.Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
