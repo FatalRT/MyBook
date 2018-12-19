@@ -1,6 +1,9 @@
 package com.example.taoch.mybook;
+
+import org.litepal.crud.LitePalSupport;
+
 /*用户类*/
-public class user  {
+public class user  extends LitePalSupport {
     private int id;
     private String name;
     private String paw;

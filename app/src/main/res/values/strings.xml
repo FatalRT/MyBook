@@ -1,10 +1,12 @@
 <resources>
     <string name="app_name">にゃんこせんせい</string>
-    <string name="start">简单是一种选择，\n不简单是一种能力，\n能够简单而又不简单地生活是一种坚定。</string>
+    <string name="start">简单是一种选择，\n不简单是一种能力，\n能够简单而又不简单地生活\n是一种坚定。</string>
     <string name="title_activity_main2">AboutActivity</string>
     <string name="aboutme">未来，你好吗？</string>
     <string name="about">我相信一切能够听见\n甚至预见离散，遇见另一个自己\n而有些瞬间无法把握\n任凭东走西顾，逝去的必然不返\n请看我头置簪花，一路走来一路盛开\n频频遗漏一些，又深陷风霜雨雪的感动\n
     </string>
-   <string name="logintext">已有账号点这里</string>
+    <string name="logintext">已有账号点这里</string>
     <string name="signuptext">没有账号点这里</string>
+    <string name="notes">我的便签</string>
+    <string name="newnote">新建便签</string>
 </resources>

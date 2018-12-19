@@ -1,29 +1,47 @@
 package com.example.taoch.mybook;
 
-import java.sql.Time;
+import org.litepal.crud.LitePalSupport;
 
 /*便签类*/
-public class note {
-
+public class note extends LitePalSupport {
     private int id;
-    private String name;
-    private Time tine;
+    private String data;
+    private String year;
+    private String month;
+    private String title;
     private String text;
 
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getData() {
+        return data;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setData(String data) {
+        this.data = data;
+    }
+
+
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
     }
 
     public String getText() {
@@ -34,11 +52,11 @@ public class note {
         this.text = text;
     }
 
-    public Time getTine() {
-        return tine;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTine(Time tine) {
-        this.tine = tine;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

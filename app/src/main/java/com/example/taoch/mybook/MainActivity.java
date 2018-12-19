@@ -13,7 +13,7 @@ import org.litepal.LitePal;
 
 public class MainActivity extends AppCompatActivity {
 
-    private  final int SPLASH_DISPLAY_LENGHT = 2000;//三秒后进入系统，时间可自行调整
+    private  final int SPLASH_DISPLAY_LENGHT = 1500;//1.5秒后进入系统，时间可自行调整
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -29,11 +29,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         LitePal.getDatabase();
-        //在startActivity停留3秒然后进入HomeActivity
+        //在startActivity停留1.5秒然后进入HomeActivity
         new android.os.Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent mainIntent = new Intent(MainActivity.this,HomeActivity.class);
+                Intent mainIntent = new Intent(MainActivity.this,LoginActivity.class);
                 MainActivity.this.startActivity(mainIntent);
                 MainActivity.this.finish();
             }

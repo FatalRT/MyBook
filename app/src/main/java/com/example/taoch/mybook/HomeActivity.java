@@ -41,11 +41,11 @@ public class HomeActivity extends AppCompatActivity {
                         switch (index)
                         {
                             case 0:
-                                Toast.makeText(HomeActivity.this,"登录",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(HomeActivity.this,"设置",Toast.LENGTH_SHORT).show();
                                 new android.os.Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Intent mainIntent = new Intent(HomeActivity.this,LoginActivity.class);
+                                        Intent mainIntent = new Intent(HomeActivity.this,SettingsActivity.class);
                                         HomeActivity.this.startActivity(mainIntent);
                                     }
                                 },Waitdo);

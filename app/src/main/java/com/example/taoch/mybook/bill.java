@@ -1,6 +1,9 @@
 package com.example.taoch.mybook;
+
+import org.litepal.crud.LitePalSupport;
+
 /*账单类*/
-public class bill {
+public class bill extends LitePalSupport {
     private int id;
     private int type;//1是收入 2是支出
     private String name;
