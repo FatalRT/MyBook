@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#4da1af</color>
     <color name="colorPrimaryDark">#cdd2d2</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#1bd5d8</color>
     <color name="colorAbout">#646f8e</color>
     <color name="mbut">#FFFFFF</color>
     <color name="logoScreenBackground">#cdd2d2</color>
@@ -10,4 +10,5 @@
     <color name="colorFirstLine">#000</color>
     <color name="colorbg1">#d5ffc6c6</color>
     <color name="colorbg2">#00ffffff</color>
+    <color name="bill">#f0f8ff</color>
 </resources>

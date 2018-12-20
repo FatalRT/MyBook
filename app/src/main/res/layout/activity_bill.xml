@@ -5,6 +5,104 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BillActivity"
-    android:background="@drawable/bill">
+   android:background="@drawable/bill">
 
+
+    <LinearLayout
+        android:id="@+id/billshow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="资产"
+            android:textColor="@color/colorFirstLine"
+            android:textSize="18sp" />
+
+        <lecho.lib.hellocharts.view.PieChartView
+            android:id="@+id/pie_chart"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:layout_margin="10dp"
+
+            />
+
+        <LinearLayout
+            android:id="@+id/incom"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="visible"
+           >
+
+            <TextView
+                android:id="@+id/income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="收入情况"
+                android:textColor="@color/colorFirstLine"
+                android:textSize="18sp" />
+
+            <lecho.lib.hellocharts.view.ColumnChartView
+                android:id="@+id/column_chart_view"
+                android:layout_width="340dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@color/bill" />
+
+            <Button
+                android:id="@+id/newin"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="收入添加"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/expent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+         >
+
+            <TextView
+                android:id="@+id/expendx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="支出情况"
+                android:textColor="@color/colorFirstLine"
+                android:textSize="18sp" />
+
+            <lecho.lib.hellocharts.view.ColumnChartView
+                android:id="@+id/column_chart_view2"
+                android:layout_width="340dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@color/bill" />
+
+            <Button
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="支出添加"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
