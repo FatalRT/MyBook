@@ -2,10 +2,13 @@ package com.example.taoch.mybook;
 
 import org.litepal.crud.LitePalSupport;
 
+import java.sql.Date;
+
 /*账单类*/
 public class bill extends LitePalSupport {
     private int id;
     private int type;//1是收入 2是支出
+    private Date date;
     private String name;
     private float money;
 
@@ -40,4 +43,13 @@ public class bill extends LitePalSupport {
     public void setMoney(float money) {
         this.money = money;
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
 }

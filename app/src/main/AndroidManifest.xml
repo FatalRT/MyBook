@@ -29,7 +29,9 @@
         <activity android:name=".BillActivity" />
         <activity android:name=".NewNoteActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".NoteChangeActivity"></activity>
+        <activity android:name=".NoteChangeActivity" />
+        <activity android:name=".IncomActivity" />
+        <activity android:name=".ExpendActivity"></activity>
     </application>
 
 </manifest>

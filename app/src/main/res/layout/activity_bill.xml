@@ -26,8 +26,8 @@
         <lecho.lib.hellocharts.view.PieChartView
             android:id="@+id/pie_chart"
             android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:layout_margin="10dp"
+            android:layout_height="180dp"
+            android:layout_margin="5dp"
 
             />
 
@@ -47,14 +47,14 @@
                 android:layout_gravity="center"
                 android:text="收入情况"
                 android:textColor="@color/colorFirstLine"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <lecho.lib.hellocharts.view.ColumnChartView
                 android:id="@+id/column_chart_view"
                 android:layout_width="340dp"
-                android:layout_height="140dp"
+                android:layout_height="110dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="2dp"
                 android:background="@color/bill" />
 
             <Button
@@ -63,9 +63,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="2dp"
                 android:text="收入添加"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -83,24 +83,25 @@
                 android:layout_gravity="center"
                 android:text="支出情况"
                 android:textColor="@color/colorFirstLine"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <lecho.lib.hellocharts.view.ColumnChartView
                 android:id="@+id/column_chart_view2"
                 android:layout_width="340dp"
-                android:layout_height="140dp"
+                android:layout_height="110dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="2dp"
                 android:background="@color/bill" />
 
             <Button
                 style="@style/Widget.AppCompat.Button.Colored"
+                android:id="@+id/newex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="2dp"
                 android:text="支出添加"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 

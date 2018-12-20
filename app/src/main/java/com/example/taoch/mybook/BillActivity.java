@@ -1,9 +1,13 @@
 package com.example.taoch.mybook;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -37,12 +41,9 @@ public class BillActivity extends AppCompatActivity {
 
     //柱状图控件
     private ColumnChartView column_chart_view;
-    private ColumnChartView column_chart_view2;
-    //统计图数据
-    private ColumnChartData datas;
-    //数据标志
-    private List<String> week;
-    //模拟数据
+    private ColumnChartView column_chart_view2;  //统计图数据
+    private ColumnChartData datas;    //数据标志
+    private List<String> week;//模拟数据
     private List<Float> testData;
 
     @Override
@@ -64,6 +65,28 @@ public class BillActivity extends AppCompatActivity {
 
         column_chart_view2 = (ColumnChartView) findViewById(R.id.column_chart_view2);
         setHistoryChart(testData, Color.parseColor("#FF0000"), column_chart_view2);
+
+        final Button income = (Button) findViewById(R.id.newin);
+        final Button expend=(Button) findViewById(R.id.newex);
+
+        income.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent s = new Intent(BillActivity.this, IncomActivity.class);
+                startActivity(s);
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+                BillActivity.this.finish();
+            }
+        });
+        expend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent s = new Intent(BillActivity.this, ExpendActivity.class);
+                startActivity(s);
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+                BillActivity.this.finish();
+            }
+        });
     }
 
     /**
