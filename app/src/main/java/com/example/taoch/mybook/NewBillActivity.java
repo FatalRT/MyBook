@@ -95,13 +95,14 @@ public class NewBillActivity extends AppCompatActivity {
         //账目显示
         ListView listView = (ListView) findViewById(R.id.list_view);
         listItems=new ArrayList<Map<String, Object>>();
-        List<bill> mybill=LitePal.select("name","text","data","year","month","money")
+        final List<bill> mybill=LitePal.select("id","name","text","data","year","month","money")
                                  .order("id desc")
                                  .find(bill.class);
         for (bill Bill:mybill){
             String rq;
             rq=Bill.getYear()+"年"+Bill.getMonth()+"月"+Bill.getData()+"日";
             map=new HashMap<String, Object>();
+            map.put("id",Bill.getId());
             map.put("billname", Bill.getName());
             map.put("billm", Bill.getMoney());
             map.put("billbeizhu",Bill.getText());
@@ -109,7 +110,7 @@ public class NewBillActivity extends AppCompatActivity {
             //把列表项加进列表集合
             listItems.add(map);
         }
-        final SimpleAdapter simpleAdapter = new SimpleAdapter(this, listItems, R.layout.bill_item, new String[]{"billname", "billm", "billdate","billbeizhu"}, new int[]{R.id.billname, R.id.billm, R.id.billdate,R.id.billbeizhu});
+        final SimpleAdapter simpleAdapter = new SimpleAdapter(this, listItems, R.layout.bill_item, new String[]{"billname", "billm", "billdate","billbeizhu","id"}, new int[]{R.id.billname, R.id.billm, R.id.billdate,R.id.billbeizhu});
         listView.setAdapter(simpleAdapter);
         //长按删除
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -128,8 +129,10 @@ public class NewBillActivity extends AppCompatActivity {
                         }else {
                             System.out.println("failed");
                         }
+                        bill billd = mybill.get(position);//获取当前数据id  billd.getId()
+                        LitePal.delete(bill.class,billd.getId());//数据库删除
                         simpleAdapter.notifyDataSetChanged();
-                        Toast.makeText(getBaseContext(), "删除列表项", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), "删除成功", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
