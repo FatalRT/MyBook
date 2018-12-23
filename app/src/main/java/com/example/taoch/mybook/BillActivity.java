@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import org.litepal.LitePal;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,10 +30,11 @@ import lecho.lib.hellocharts.view.PieChartView;
 
 
 public class BillActivity extends AppCompatActivity {
+    //饼状图
     private PieChartView pie_chart;//数据
     private PieChartData pieChardata;
     List<SliceValue> values = new ArrayList<SliceValue>();//定义数据，实际情况肯定不是这样写固定值的
-    private int[] data = {300000, 400000, 150000, 50000, 100000};
+    private float[] data=new float[5];
     private int[] colorData = {Color.parseColor("#ec063d"),
             Color.parseColor("#f1c704"),
             Color.parseColor("#c9c9c9"),
@@ -40,39 +43,43 @@ public class BillActivity extends AppCompatActivity {
     private String[] stateChar = {"存款", "房产", "股票", "现金", "其他"};
 
     //柱状图控件
-    private ColumnChartView column_chart_view;
-    private ColumnChartView column_chart_view2;  //统计图数据
+    private ColumnChartView column_chart_view;  //统计图数据
     private ColumnChartData datas;    //数据标志
     private List<String> week;//模拟数据
     private List<Float> testData;
+    private  int Day;
+    private Calendar cal;
+    private float[] shourudata=new float[7];
+    private float[] zhichudata=new float[7];
+
+    //数据库操作
+    private List<bill> billList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bill);
 
+
+        //饼状图
         pie_chart = (PieChartView) findViewById(R.id.pie_chart);
         pie_chart.setOnValueTouchListener(selectListener);//设置点击事件监听
         setPieChartData();
         initPieChart();
 
+        //柱状图
+        cal = Calendar.getInstance();
+        Day=cal.get(Calendar.DAY_OF_MONTH);
         column_chart_view = (ColumnChartView) findViewById(R.id.column_chart_view);
-        testData = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
-            testData.add(i *30 + 200f);
-        }
-        setHistoryChart(testData, Color.parseColor("#00FF00"), column_chart_view);
+        setHistoryChart( Color.parseColor("#00FF00"), column_chart_view);
 
-        column_chart_view2 = (ColumnChartView) findViewById(R.id.column_chart_view2);
-        setHistoryChart(testData, Color.parseColor("#FF0000"), column_chart_view2);
-
-        final Button income = (Button) findViewById(R.id.newin);
-        final Button expend=(Button) findViewById(R.id.newex);
-
+        //跳转按钮
+        final Button income = (Button) findViewById(R.id.newbill);
+        final Button expend=(Button) findViewById(R.id.show);
         income.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent s = new Intent(BillActivity.this, IncomActivity.class);
+                Intent s = new Intent(BillActivity.this,NewBillActivity.class);
                 startActivity(s);
                 overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 BillActivity.this.finish();
@@ -81,19 +88,30 @@ public class BillActivity extends AppCompatActivity {
         expend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent s = new Intent(BillActivity.this, ExpendActivity.class);
+                Intent s = new Intent(BillActivity.this,NewBillActivity.class);
                 startActivity(s);
                 overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 BillActivity.this.finish();
             }
         });
+
+
     }
 
+
+    //饼图
     /**
      * 饼图
      * 获取数据
      */
     private void setPieChartData() {
+        float a=LitePal.sum(bill.class,"money",float.class);
+        data[0]=50000+a;//存款
+        data[1]=100000;//房产
+        data[2]=20000;//股票
+        data[3]=10000;//现金
+        data[4]=20000;//其他
+        // "存款", "房产", "股票", "现金", "其他"
         for (int i = 0; i < data.length; ++i) {
             SliceValue sliceValue = new SliceValue((float) data[i], colorData[i]);
             values.add(sliceValue);
@@ -149,10 +167,39 @@ public class BillActivity extends AppCompatActivity {
     }
 
     //柱状图
-    private void setHistoryChart(List<Float> columnDatas, int columnColor, ColumnChartView charView) {
+    private void setHistoryChart( int columnColor, ColumnChartView charView) {
         week = new ArrayList<>();
         for (int i = 6; i >= 0; i--) {
             week.add(getWeekDays(i));
+        }
+        //最近七天收入情况
+          for(int n=0;n<7;n++) {
+              List<bill> shouru = LitePal.select("money")
+                      .where("type = ? and data= ?", "1", String.valueOf(Day-n))
+                      .find(bill.class);
+              float sum=0;
+              for(bill Bill:shouru)
+              {
+                  sum=sum+Bill.getMoney();
+              }
+              shourudata[n]=sum;
+          }
+          //最近七天支出情况
+        for(int n=0;n<7;n++) {
+            List<bill> zhichu = LitePal.select("money")
+                    .where("type = ? and data= ?", "2", String.valueOf(Day-n))
+                    .find(bill.class);
+            float sum=0;
+           for(bill Bill:zhichu)
+           {
+               sum=sum+Bill.getMoney();
+           }
+            zhichudata[n]=sum;
+        }
+        //横坐标
+        testData = new ArrayList<>();
+        for (int i = 0; i < 7; i++) {
+            testData.add(i *30 + 200f);
         }
         // 使用的 7列，每列1个subcolumn。
         int numSubcolumns = 1;
@@ -161,7 +208,6 @@ public class BillActivity extends AppCompatActivity {
         List<Column> columns = new ArrayList<Column>();
         //子列数据集合
         List<SubcolumnValue> values;
-
         List<AxisValue> axisValues = new ArrayList<AxisValue>();
         //遍历列数numColumns
         for (int i = 0; i < numColumns; ++i) {
@@ -169,8 +215,10 @@ public class BillActivity extends AppCompatActivity {
             //遍历每一列的每一个子列
             for (int j = 0; j < numSubcolumns; ++j) {
                 //为每一柱图添加颜色和数值
-                float f = columnDatas.get(i);
-                values.add(new SubcolumnValue(f, columnColor));
+                float f =shourudata[6-i];
+                float h= zhichudata[6-i];
+                values.add(new SubcolumnValue(f, Color.parseColor("#00FF90")));
+                values.add(new SubcolumnValue(h, Color.parseColor("#FF0000")));
             }
             //创建Column对象
             Column column = new Column(values);
@@ -187,14 +235,13 @@ public class BillActivity extends AppCompatActivity {
         //创建一个带有之前圆柱对象column集合的ColumnChartData
         datas = new ColumnChartData(columns);
         datas.setValueLabelTextSize(8);
-        datas.setValueLabelBackgroundColor(Color.parseColor("#00000000"));
-//        data.setValueLabelTypeface(Typeface.DEFAULT);// 设置数据文字样式
+        datas.setValueLabelBackgroundColor(Color.parseColor("#000000"));
         datas.setValueLabelBackgroundEnabled(true);
         datas.setValueLabelBackgroundAuto(false);
         //定义x轴y轴相应参数
         Axis axisX = new Axis();
         Axis axisY = new Axis().setHasLines(true);
-        axisY.setName("金额");//轴名称
+        axisY.setName("金额(RMB)");//轴名称
         axisY.hasLines();//是否显示网格线
         axisY.setTextColor(Color.parseColor("#000000"));//颜色
         axisX.hasLines();
@@ -210,6 +257,7 @@ public class BillActivity extends AppCompatActivity {
         charView.setColumnChartData(datas);
     }
 
+    //今天日期获取
     private String getWeekDays(int days) {
         if (days == 0) {
             return getString(R.string.today);
@@ -223,6 +271,12 @@ public class BillActivity extends AppCompatActivity {
         if (w < 0)
             w = 0;
         return weekDays[w];
+    }
+
+    //数据路
+    private void initbill(){
+        billList.clear();
+        billList=LitePal.findAll(bill.class) ;
     }
 
 }

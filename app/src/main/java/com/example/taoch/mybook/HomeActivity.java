@@ -30,10 +30,10 @@ public class HomeActivity extends AppCompatActivity {
          * addSubMenu 添加一个子菜单项，包括子菜单的背景色以及图标 。图标支持 Resource、Bitmap、Drawable 形式
          */
         circleMenu.setMainMenu(Color.parseColor("#FFFFFF"), R.mipmap.ic_launcher_round, R.mipmap.ic_launcher_round)
-                .addSubMenu(Color.parseColor("#81C7D4"), R.mipmap.ic_launcher_round)
-                .addSubMenu(Color.parseColor("#69B0AC"), R.mipmap.ic_launcher_round)
-                .addSubMenu(Color.parseColor("#F4A7B9"), R.mipmap.ic_launcher_round)
-                .addSubMenu(Color.parseColor("#ECB88A"), R.mipmap.ic_launcher_round)
+                .addSubMenu(Color.parseColor("#81C7D4"), R.drawable.shezhi)
+                .addSubMenu(Color.parseColor("#69B0AC"), R.drawable.zhangbeng)
+                .addSubMenu(Color.parseColor("#F4A7B9"), R.drawable.bianqian)
+                .addSubMenu(Color.parseColor("#ECB88A"), R.drawable.jieshao)
                 .setOnMenuSelectedListener(new OnMenuSelectedListener() {
 
                     @Override

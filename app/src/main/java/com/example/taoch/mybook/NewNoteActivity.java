@@ -39,10 +39,10 @@ public class NewNoteActivity extends AppCompatActivity {
 
                     note note = new note();
                     note.setData(""+day);
-                    note.setTitle(title.getText().toString());
-                    note.setText(text.getText().toString());
                     note.setYear(""+year);
                     note.setMonth(""+month);
+                    note.setTitle(title.getText().toString());
+                    note.setText(text.getText().toString());
                     note.save();
                     Toast toast=Toast.makeText(NewNoteActivity.this,"保存成功",Toast.LENGTH_LONG);
                     toast.show();

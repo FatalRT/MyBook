@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <litepal>
     <dbname value="Mybook" />
-    <version value="2" />
+    <version value="3" />
     <list>
         <mapping class="com.example.taoch.mybook.user" />
         <mapping class="com.example.taoch.mybook.note" />

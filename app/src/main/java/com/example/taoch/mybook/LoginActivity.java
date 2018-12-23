@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
           @Override
           public void onClick(View v) {
               user signupuser;
-             LitePal.getDatabase();
+              LitePal.getDatabase();
               signupuser=new user();
               String strname=name.getText().toString();
               String strpassword=paw.getText().toString();

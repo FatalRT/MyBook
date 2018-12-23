@@ -8,9 +8,12 @@ import java.sql.Date;
 public class bill extends LitePalSupport {
     private int id;
     private int type;//1是收入 2是支出
-    private Date date;
     private String name;
     private float money;
+    private String text;
+    private String data;
+    private String year;
+    private String month;
 
     public int getId() {
         return id;
@@ -44,12 +47,29 @@ public class bill extends LitePalSupport {
         this.money = money;
     }
 
-    public Date getDate() {
-        return date;
+    public String getText() {
+        return text;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setText(String text) {
+        this.text = text;
     }
-
+    public String getData() {
+        return data;
+    }
+    public void setData(String data) {
+        this.data = data;
+    }
+    public String getYear() {
+        return year;
+    }
+    public void setYear(String year) {
+        this.year = year;
+    }
+    public String getMonth() {
+        return month;
+    }
+    public void setMonth(String month) {
+        this.month = month;
+    }
 }
